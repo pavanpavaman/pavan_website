@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdfbf7;
+  --foreground: #2d2d2d;
+  --paper-line: #e5e5e5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-marker: var(--font-marker);
+  --font-hand: var(--font-hand);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fdfbf7;
+  border-left: 2px solid #2d2d2d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d2d2d;
+  border: 2px solid #fdfbf7;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a4a4a;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-hand), cursive;
+  overflow-x: hidden;
+  background-image: radial-gradient(#d1d1d1 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-marker), cursive;
+}
+
+/* Custom animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Selection color */
+::selection {
+  background: #ffeb3b;
+  color: #000;
+}
+
+/* Focus outline for accessibility */
+:focus-visible {
+  outline: 3px dashed #2d2d2d;
+  outline-offset: 4px;
+}
+
+/* Print Styles */
+@media print {
+  /* Force colors and backgrounds */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide everything except the resume section using visibility */
+  body {
+    visibility: hidden !important;
+    background: white !important;
+  }
+
+  #resume,
+  #resume * {
+    visibility: visible !important;
+  }
+
+  /* Position the resume at the top of the printed page */
+  #resume {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    background-color: #fdfbf7 !important; /* Preserve paper color */
+    background-image: radial-gradient(#d1d1d1 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+  }
+
+  /* Hide UI elements specifically */
+  .print\:hidden,
+  nav,
+  footer {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Reset container constraints */
+  .max-w-5xl, .max-w-7xl {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Preserve the card styling exactly */
+  #resume .bg-white {
+    background-color: white !important;
+    border: 2px solid #2d2d2d !important;
+    box-shadow: 12px 12px 0px #2d2d2d !important;
+  }
+
+  /* Force fonts */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-marker), cursive !important;
+  }
+  
+  body, p, span, li {
+    font-family: var(--font-hand), cursive !important;
+  }
+
+  /* Remove any overflow restrictions that might clip the print */
+  main {
+    overflow: visible !important;
+    height: auto !important;
+  }
+}
+
